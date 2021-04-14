@@ -10,14 +10,19 @@ passport.use(new GoogleStrategy(
         clientID: keys.GOOGLE_CLIENT_ID, 
         clientSecret: keys.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback'
-    }, (accessToken) => {
-        console.log(accessToken);
+    }, (accessToken, refreshToken, profile, done) => {    
+        console.log('profile', profile);        
     })
 );
-
 app.get('/auth/google',   
     passport.authenticate('google', { scope: ['profile', 'email'] })
 );
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
