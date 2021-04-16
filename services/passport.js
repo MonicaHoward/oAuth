@@ -31,7 +31,7 @@ passport.use(new GoogleStrategy(
                     new User({ googleID: profile.id })
                         .save()
                         .then(user => {
-                            done(null, user)
+                            done(null, _)
                         })
                 }
             })
