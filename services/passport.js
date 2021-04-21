@@ -24,19 +24,15 @@ passport.use(new GoogleStrategy(
         proxy: true
     }, 
     //accessToken and refreshToken are being used by Passport
-        (accessToken, refreshToken, profile, done) => {    
-            User.findOne({ googleID: profile.id})
-            .then((existingUser) => {
-                if (existingUser) {
-                    done(null, existingUser);
-                } else {
-                    new User({ googleID: profile.id })
-                        .save()
-                        .then(user => {
-                            done(null, user)
-                        })
-                }
-            })
+        async (accessToken, refreshToken, profile, done) => {    
+            const exisitingUser = await User.findOne({ googleID: profile.id})
+    
+            if (existingUser) {
+                done(null, existingUser);
+            } else {
+                const user = await new User({ googleID: profile.id }).save()
+                    done(null, user);
+            }
     })
 );
 

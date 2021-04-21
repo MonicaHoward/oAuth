@@ -10,7 +10,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   "author": "Monica Howard",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.0.2",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.3",
