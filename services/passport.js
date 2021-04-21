@@ -23,6 +23,7 @@ passport.use(new GoogleStrategy(
         callbackURL: '/auth/google/callback',
         proxy: true
     }, 
+    //accessToken and refreshToken are being used by Passport
         (accessToken, refreshToken, profile, done) => {    
             User.findOne({ googleID: profile.id})
             .then((existingUser) => {
