@@ -26,12 +26,11 @@ passport.use(new GoogleStrategy(
     //accessToken and refreshToken are being used by Passport
         async (accessToken, refreshToken, profile, done) => {    
             const exisitingUser = await User.findOne({ googleID: profile.id})
-    
             if (existingUser) {
                 done(null, existingUser);
             } else {
                 const user = await new User({ googleID: profile.id }).save()
-                    done(null, user);
+                done(null, user);
             }
     })
 );
