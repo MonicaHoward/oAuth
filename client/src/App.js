@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions'
 import './App.css';
@@ -16,12 +15,11 @@ function App(props) {
 
   return (
     <div className="App">
-        <BrowserRouter>
-          <Navbar/>
-          <Switch>
-            
-          </Switch>
-        </BrowserRouter> 
+      <Route>
+        <Navbar/>
+        <Switch>       
+        </Switch>
+      </Route>
     </div>
   );
 }

@@ -1,12 +1,30 @@
 import React from 'react';
-import {Nav, Logo, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements';
+import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements';
+import { connect } from 'react-redux';
+import { GrUser } from "react-icons/gr";
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+    let component;
+    const RenderAuthStatus = () => {
+        
+        switch (props.auth){
+            case null:
+                return;
+            case false: 
+                component = <NavBtnLink to="/auth/google">Login With Google</NavBtnLink>
+                break;
+            default: 
+                component = <NavBtnLink to="/api/logout">Log Out</NavBtnLink>
+        }
+        return component
+    }
+console.log(props);
     return(
         <>
             <Nav>
-                <NavLink to="/">
-                    <h1 >oAuth</h1>
+                <NavLink exact to="/">
+                    <h1>oAuth</h1>
                 </NavLink>
                 <Bars />
                 <NavMenu>
@@ -16,13 +34,27 @@ const Navbar = () => {
                     <NavLink to="/contact" activeStyle>
                         Contact
                     </NavLink>
+                    
                 </NavMenu>
+                <NavMenu style={{justifyContent: "flex-end"}}>
+                    <NavLink to="/profile">
+                        <GrUser/>
+                    </NavLink>   
+                </NavMenu>
+                         
                 <NavBtn>
-                    <NavBtnLink to="/auth/google">Sign In With Google</NavBtnLink>
+                    {/* Leaving this in, but commented out because its cool and I want to remember how to do it.  */}
+                    {/* <NavBtnLink to="/auth/google"><RenderAuthStatus value={props.auth}/></NavBtnLink> */}
+                    {RenderAuthStatus(props.auth)}
+
                 </NavBtn>
             </Nav>
         </>
     )
 }
 
-export default Navbar;
+function mapStateToProps({ auth }){
+    return { auth };
+}
+
+export default connect(mapStateToProps)(Navbar);
