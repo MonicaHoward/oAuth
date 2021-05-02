@@ -28,16 +28,10 @@ console.log(props);
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/about" activeStyle={{
-    fontWeight: "bold",
-    color: "DeepPink"
-  }}>
+                    <NavLink to="/about" activeStyle={{fontWeight: "bold", color: "DeepPink"}}>
                         About
                     </NavLink>
-                    <NavLink to="/contact" activeStyle={{
-    fontWeight: "bold",
-    color: "DeepPink"
-  }}>
+                    <NavLink to="/contact" activeStyle={{fontWeight: "bold", color: "DeepPink"}}>
                         Contact
                     </NavLink>
                     
