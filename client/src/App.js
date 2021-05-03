@@ -5,6 +5,8 @@ import * as actions from './actions'
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
+import About from './components/about/About';
+
 
 
 
@@ -19,7 +21,9 @@ function App(props) {
       <Route>
         <Navbar/>
         <Switch>
-        <Link to="/" component={Home} />
+          <Link exact to="/" component={Home} />
+          <Link to="/home" component={Home} />
+          <Link to="/about" component={About} />
         </Switch>
       </Route>
     </div>
